@@ -4,7 +4,7 @@ This is a Python bot that looks up posts from specified subreddits and automatic
 
 [![Deploy](https://www.herokucdn.com/deploy/button.svg)](https://heroku.com/deploy)
 
-**NEW:** Subscribe to the Tootbot updates feed [via email](https://feedburner.google.com/fb/a/mailverify?uri=tootbot) or [with an RSS reader](http://feeds.feedburner.com/tootbot) to be notified when a new version is available.
+THIS BOT HAS HEAVILY BEEN REMADE BY KILAM2468
 
 **Features:**
 
