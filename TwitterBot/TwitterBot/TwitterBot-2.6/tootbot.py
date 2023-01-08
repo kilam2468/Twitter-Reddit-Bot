@@ -129,7 +129,7 @@ def make_post(post_dict):
                         if (media_file):
                             print(
                                 '[ OK ] Posting this on Twitter with media attachment:', caption)
-                            tweet = twitter.update_with_media(filename=media_file, status=caption)
+                            tweet = twitter.update_status_with_media(filename=media_file, status=caption)
                             # Clean up media file
                             try:
                                 os.remove(media_file)
@@ -140,7 +140,7 @@ def make_post(post_dict):
                             print('[ OK ] Posting this on Twitter:',caption)
                             tweet = twitter.update_status(status=caption)
                         # Log the tweet
-                        log_post(post_id, 'https://twitter.com/' + twitter_username + '/status/' + tweet.id_str + '/')
+                        log_post(post_id,'https://twitter.com/' + twitter_username + '/status/' + tweet.id_str + '/')
                     except BaseException as e:
                         print('[EROR] Error while posting tweet:', str(e))
                         # Log the post anyways
@@ -322,7 +322,7 @@ if POST_TO_TWITTER is True:
             auth = tweepy.OAuthHandler(CONSUMER_KEY, CONSUMER_SECRET)
             auth.set_access_token(ACCESS_TOKEN, ACCESS_TOKEN_SECRET)
             twitter = tweepy.API(auth)
-            twitter_username = twitter.me().screen_name
+            twitter_username = twitter.verify_credentials().screen_name
             print('[ OK ] Sucessfully authenticated on Twitter as @' +
                   twitter_username)
         except BaseException as e:
@@ -347,7 +347,7 @@ if POST_TO_TWITTER is True:
             auth = tweepy.OAuthHandler(CONSUMER_KEY, CONSUMER_SECRET)
             auth.set_access_token(ACCESS_TOKEN, ACCESS_TOKEN_SECRET)
             twitter = tweepy.API(auth)
-            twitter_username = twitter.me().screen_name
+            twitter_username = twitter.verify_credentials().screen_name
             print('[ OK ] Sucessfully authenticated on Twitter as @' +
                   twitter_username)
             # It worked, so save the keys to a file
@@ -424,7 +424,7 @@ if (os.name == 'nt'):
                       masto_username + '@' + MASTODON_INSTANCE_DOMAIN + ' - Tootbot')
         elif POST_TO_TWITTER:
             # Set title with just Twitter username
-            twitter_username = twitter.me().screen_name
+            twitter_username = twitter.verify_credentials().screen_name
             os.system('title ' + '@' + twitter_username + ' - Tootbot')
         elif MASTODON_INSTANCE_DOMAIN:
             # Set title with just Mastodon username
